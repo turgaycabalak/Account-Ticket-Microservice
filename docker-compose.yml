@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+
+  cassandra:
+    image: cassandra:4.0.3
+    container_name: cassandradb
+    ports:
+      - "9042:9042"
+    volumes:
+      - ~/apps/cassandra:/var/lib/cassandra
+
+  postgres:
+    image: postgres:14.2-bullseye
+    container_name: postgresdb
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgresdb
+      PGDATA: /data/postgres
+
+  elasticsearch:
+    image: elasticsearch:7.17.3
+    container_name: elasticsearchdb
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+
+  mongo:
+    image: mongo:4.4.14-focal
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ~/apps/mongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+      MONGO_INITDB_DATABASE: notificationdb
+
+  rabbitmq:
+    image: rabbitmq:3.9.11-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"

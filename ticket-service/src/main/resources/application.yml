@@ -1,0 +1,15 @@
+spring:
+  config:
+    import: configserver:http://localhost:8888
+  application:
+    name: ticket-service
+#  rabbitmq:
+#    addresses: localhost:5672
+
+
+
+  cloud:
+    config:
+      profile: native
+      uri: http://localhost:8888
+

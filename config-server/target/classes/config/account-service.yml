@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: account-service
+
+  data:
+    cassandra:
+      port: 9042
+      keyspace-name: springcloud
+      contact-points: cassandradb
+      username: cassandra
+      password: cassandra
+      schema-action: create_if_not_exists
+
+  zipkin:
+    base-url: http://localhost:9411
+
+server:
+  port: 9001
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

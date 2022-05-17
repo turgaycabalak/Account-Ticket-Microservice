@@ -1,0 +1,39 @@
+#spring:
+#  config:
+#    import: configserver:http://localhost:8888
+#  application:
+#    name: notification-service
+#
+#  data:
+#    mongodb:
+#      authentication-database: admin
+#      username: mongo
+#      password: mongo
+#      database: notificationdb
+#      port: 27017
+#
+#
+#  rabbitmq:
+#    addresses: localhost:5672
+#
+#  cloud:
+#    config:
+#      profile: native
+#      uri: http://localhost:8888
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+
+spring:
+  config:
+    import: configserver:http://localhost:8888
+  application:
+    name: notification-service
+
+
+  cloud:
+    config:
+      profile: native
+      uri: http://localhost:8888
